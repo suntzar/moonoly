@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="styles/style.css"
+      media="screen"
+    />
+    <title>moonoly</title>
+  </head>
+  <body>
+    <header>
+      <h2 id="name">M<span style="color: var(--color-p);">oo</span>noly</h2>
+    </header>
+    <editor>
+      <nav>
+        <div class="navi" onclick="edit()">
+          <i data-duoicon="palette" class="duoicon"></i>
+        </div>
+        <div class="navi"><i data-duoicon="app" class="duoicon"></i></div>
+        <div class="navi"><i data-duoicon="settings" class="duoicon"></i></div>
+      </nav>
+      <main>
+        <textarea
+          id="markdown"
+          placeholder="Digite seu Markdown aqui..."
+        ></textarea>
+        <div id="preview"></div>
+      </main>
+    </editor>
+    <script src="https://unpkg.com/duo-icons@latest"></script>
+    <script>
+      duoIcons.createIcons();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>

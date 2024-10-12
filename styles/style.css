@@ -1,0 +1,191 @@
+@import url(https://db.onlinewebfonts.com/c/2adbeea25e4c3a9e9ba6031bbfb45343?family=Linotte-SemiBold);
+
+:root {
+  --color-f: #c1ccd5;
+  --color-p: #b0d8ff;
+  --color-s: #729acb;
+  --color-z: #484c56;
+  --color-y: #61687691;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Linotte-SemiBold";
+  transition: 0.3s ease-out;
+  outline: none;
+  -ms-overflow-style: none; /* IE e Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilos gerais */
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-z);
+  color: var(--color-f);
+  overflow: hidden;
+}
+
+header,
+nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  padding: 0 2rem;
+  background-color: var(--color-z);
+  border-bottom: 0.2rem solid var(--color-y);
+}
+
+nav {
+  justify-content: space-between;
+  border-bottom: none;
+}
+
+editor,
+main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+#markdown,
+#preview {
+  flex: 1;
+  width: 100%;
+  padding: 2rem;
+  background-color: var(--color-z);
+  border: none;
+  color: var(--color-f);
+}
+
+#markdown {
+  resize: none;
+}
+
+#preview {
+  overflow-y: scroll;
+}
+
+#preview * {
+  margin-bottom: 1rem;
+}
+
+.mkimage {
+  margin: 2rem auto;
+  width: 80%;
+  box-shadow: 0 0 1rem #00000063;
+  border-radius: 1rem;
+}
+
+b {
+  color: var(--color-p);
+}
+
+a {
+  color: var(--color-s);
+}
+
+.hr {
+  color: transparent;
+  opacity: 0.2;
+  width: 100%;
+  margin: 3rem auto;
+  border: 0;
+  border-top: 0.2rem dotted var(--color-f);
+}
+
+::placeholder {
+  color: var(--color-f);
+  opacity: 0.6;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1.3);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.4);
+  }
+  50% {
+    transform: rotate(-5deg) scale(1.5);
+  }
+  75% {
+    transform: rotate(5deg) scale(1.4);
+  }
+}
+
+/* Estilos para navegação */
+.navi {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navi:first-child {
+  border-left: none;
+}
+
+.duoicon {
+  transform: scale(1.3);
+  color: var(--color-f);
+}
+
+.navi:hover .duoicon {
+  color: var(--color-p);
+  animation: shake 0.5s;
+}
+
+/* Estilos para tela retrato */
+@media (orientation: portrait) {
+  editor {
+    flex-direction: column-reverse;
+  }
+  main {
+    flex-direction: column;
+  }
+  nav {
+    border-top: 0.2rem solid var(--color-y);
+    justify-content: space-between;
+    border-left: none;
+  }
+  .navi {
+    border-left: 0.2rem solid var(--color-y);
+  }
+  #markdown {
+    border-bottom: 0.2rem solid var(--color-y);
+  }
+}
+
+/* Estilos para tela paisagem */
+@media (orientation: landscape) {
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    width: 6rem;
+    height: 100%;
+    border-right: 0.2rem solid var(--color-y);
+  }
+  .navi {
+    border-top: 0.2rem solid var(--color-y);
+  }
+  .navi:first-child {
+    border-top: none;
+  }
+  main {
+    flex-direction: row;
+  }
+  #markdown {
+    border-right: 0.2rem solid var(--color-y);
+  }
+}
