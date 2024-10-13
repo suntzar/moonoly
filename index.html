@@ -1,15 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="styles/style.css"
-      media="screen"
-    />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" media="screen" />
     <title>moonoly</title>
   </head>
   <body>
@@ -28,11 +23,11 @@
         <div class="navi"><i data-duoicon="settings" class="duoicon"></i></div>
       </nav>
       <main>
-        <galery id="galery"> </galery>
-        <textarea
-          id="markdown"
-          placeholder="Digite seu Markdown aqui..."
-        ></textarea>
+        <galery id="galery">
+          <div class="card" id="card"></div>
+          <div class="card"></div>
+        </galery>
+        <textarea id="markdown" placeholder="Digite seu Markdown aqui..."></textarea>
         <div id="preview"></div>
       </main>
     </editor>

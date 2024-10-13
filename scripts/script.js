@@ -20,25 +20,13 @@ function markdownToHtml(markdown) {
   markdown = markdown.replace(/~~(.*?)~~/gim, "<del>$1</del>");
 
   // Converte imagens
-  markdown = markdown.replace(
-    /!\[(.*?)\]\((.*?)\)/gim,
-    '<img src="$2" alt="$1" class="mkmedia" />'
-  );
+  markdown = markdown.replace(/!\[(.*?)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="mkmedia" />');
 
   // Converte links
   markdown = markdown.replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2">$1</a>');
 
   // Converte listas não ordenadas
   markdown = markdown.replace(/^\s*[-+*] (.*$)/gim, "<ul><li>$1</li></ul>");
-  markdown = markdown.replace(/<\/ul>\s*<ul>/gim, "");
-
-  // Converte listas ordenadas
-  markdown = markdown.replace(/^\s*\d+\. (.*$)/gim, "<ol><li>$1</li></ol>");
-  markdown = markdown.replace(/<\/ol>\s*<ol>/gim, "");
-
-  // Converte listas aninhadas
-  markdown = markdown.replace(/^\s*[-+*] (.*$)/gim, "<li>$1</li>");
-  markdown = markdown.replace(/<\/li>\s*<li>/gim, "");
 
   // Converte blocos de código
   markdown = markdown.replace(/```([^`]+)```/gim, "<pre><code>$1</code></pre>");
@@ -72,30 +60,42 @@ editor.addEventListener("input", () => {
 });
 
 function edit() {
-  show_edit = !show_edit;
-  if (show_edit) {
+  if (!show_galery) {
+    show_edit = !show_edit;
+  }
+  if (show_edit && !show_galery) {
     editor.style.display = "block"; // Mostra o editor
   } else {
     editor.style.display = "none"; // Oculta o editor
+  }
+  if (show_galery) {
+    galeryid.style.display = "none"; // Oculta o galeria
+    editor.style.display = "none"; // Oculta o editor
+    preview.style.display = "block"; // Mostra o preview
+    show_galery = false;
+    show_edit = false;
   }
 }
 
 function galery() {
   show_galery = !show_galery;
   if (show_galery) {
-    galeryid.style.display = "block"; // Mostra o editor
-    editor.style.display = "none"; // Mostra o editor
-    preview.style.display = "none"; // Mostra o editor
-  } else {
-    galeryid.style.display = "none"; // Oculta o editor
+    galeryid.style.display = "block"; // Mostra a galeria
     editor.style.display = "none"; // Oculta o editor
-    preview.style.display = "block"; // Oculta o editor
+    preview.style.display = "none"; // Oculta o preview
+    show_edit = false;
+  } else {
+    galeryid.style.display = "none"; // Oculta o galeria
+    editor.style.display = "none"; // Oculta o editor
+    preview.style.display = "block"; // Mostra o preview
+    show_edit = false;
   }
 }
 
 function updatePreview() {
   const markdownText = editor.value;
   preview.innerHTML = markdownToHtml(markdownText);
+  document.getElementById("card").innerHTML = markdownToHtml(markdownText);
 }
 
 function loadContent() {
@@ -114,35 +114,6 @@ function saveContent() {
 editor.addEventListener("input", () => {
   saveContent();
   updatePreview();
-});
-
-search.value = "derpixon";
-
-search.addEventListener("input", () => {
-  fetch(
-    "https://api.rule34.xxx/index.php?page=dapi&json=1&s=post&q=index&tags=" +
-      search.value.replace(/[\s,]/g, "+")
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      let media = "";
-
-      for (let i = 0; i < 3; i++) {
-        let fileUrl = data[Math.floor(Math.random() * data.length)].file_url;
-        let fileExtension = fileUrl.split(".").pop().toLowerCase();
-
-        if (["mp4", "webm", "ogg"].includes(fileExtension)) {
-          media += `<video class="mkmedia" controls>
-                <source src="${data[i].file_url}" type="video/${fileExtension}">
-              </video>\n`;
-        } else {
-          media += `<img class="mkmedia" src="${data[i].file_url}" />\n`;
-        }
-      }
-
-      console.log(media);
-      galeryid.innerHTML = media;
-    });
 });
 
 window.addEventListener("load", loadContent);
