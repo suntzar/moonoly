@@ -1,6 +1,9 @@
+const galeryid = document.getElementById("galery");
+const search = document.getElementById("search");
 const editor = document.getElementById("markdown");
 const preview = document.getElementById("preview");
 let show_edit = true;
+let show_galery = false;
 
 function markdownToHtml(markdown) {
   // Converte cabeçalhos
@@ -19,7 +22,7 @@ function markdownToHtml(markdown) {
   // Converte imagens
   markdown = markdown.replace(
     /!\[(.*?)\]\((.*?)\)/gim,
-    '<img src="$2" alt="$1" class="mkimage" />'
+    '<img src="$2" alt="$1" class="mkmedia" />'
   );
 
   // Converte links
@@ -57,8 +60,9 @@ function markdownToHtml(markdown) {
   markdown = markdown.replace(/\\\\/gim, "<br />");
 
   // Converte quebras de linha padrões
-  markdown = markdown.replace(/\n/gim, "<br />");
+  markdown = markdown.replace(/\n/gim, "<p/><p>");
 
+  console.log(markdown.trim());
   return markdown.trim();
 }
 
@@ -73,6 +77,19 @@ function edit() {
     editor.style.display = "block"; // Mostra o editor
   } else {
     editor.style.display = "none"; // Oculta o editor
+  }
+}
+
+function galery() {
+  show_galery = !show_galery;
+  if (show_galery) {
+    galeryid.style.display = "block"; // Mostra o editor
+    editor.style.display = "none"; // Mostra o editor
+    preview.style.display = "none"; // Mostra o editor
+  } else {
+    galeryid.style.display = "none"; // Oculta o editor
+    editor.style.display = "none"; // Oculta o editor
+    preview.style.display = "block"; // Oculta o editor
   }
 }
 
@@ -99,10 +116,34 @@ editor.addEventListener("input", () => {
   updatePreview();
 });
 
-fetch(
-  "https://api.rule34.xxx/index.php?page=dapi&json=1&s=post&q=index&tag=pussy+cum+1girl"
-)
-  .then((response) => response.json())
-  .then((data) => message.channel.send(data[0].file_url));
+search.value = "derpixon";
+
+search.addEventListener("input", () => {
+  fetch(
+    "https://api.rule34.xxx/index.php?page=dapi&json=1&s=post&q=index&tags=" +
+      search.value.replace(/[\s,]/g, "+")
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      let media = "";
+
+      for (let i = 0; i < 3; i++) {
+        let fileUrl = data[Math.floor(Math.random() * data.length)].file_url;
+        let fileExtension = fileUrl.split(".").pop().toLowerCase();
+
+        if (["mp4", "webm", "ogg"].includes(fileExtension)) {
+          media += `<video class="mkmedia" controls>
+                <source src="${data[i].file_url}" type="video/${fileExtension}">
+              </video>\n`;
+        } else {
+          media += `<img class="mkmedia" src="${data[i].file_url}" />\n`;
+        }
+      }
+
+      console.log(media);
+      galeryid.innerHTML = media;
+    });
+});
 
 window.addEventListener("load", loadContent);
+window.addEventListener("load", edit);
