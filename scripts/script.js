@@ -97,6 +97,7 @@ function updatePreview() {
   preview.innerHTML = marked.parse(markdownText);
   document.getElementById("card").innerHTML = marked.parse(markdownText);
   console.log(marked.parse(markdownText));
+  hljs.highlightAll();
 }
 
 function loadContent() {
@@ -118,4 +119,5 @@ editor.addEventListener("input", () => {
 });
 
 window.addEventListener("load", loadContent);
+window.addEventListener("load", hljs.highlightAll);
 window.addEventListener("load", edit);
