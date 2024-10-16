@@ -74,6 +74,13 @@ pre code.hljs {
   color: var(--color-f);
 }
 
+code {
+  background: var(--color-y);
+  color: var(--color-f);
+  padding: 0.3rem;
+  border-radius: 0.4rem;
+}
+
 #search {
   padding: 0.8rem;
   background-color: var(--color-y);
