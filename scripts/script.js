@@ -56,7 +56,7 @@ function markdownToHtml(markdown) {
 
 editor.addEventListener("input", () => {
   const markdownText = editor.value;
-  preview.innerHTML = markdownToHtml(markdownText);
+  preview.innerHTML = marked.parse(markdownText);
 });
 
 function edit() {
@@ -94,8 +94,9 @@ function galery() {
 
 function updatePreview() {
   const markdownText = editor.value;
-  preview.innerHTML = markdownToHtml(markdownText);
-  document.getElementById("card").innerHTML = markdownToHtml(markdownText);
+  preview.innerHTML = marked.parse(markdownText);
+  document.getElementById("card").innerHTML = marked.parse(markdownText);
+  console.log(marked.parse(markdownText));
 }
 
 function loadContent() {

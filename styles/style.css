@@ -3,7 +3,7 @@
 :root {
   --color-f: #c1ccd5;
   --color-p: #b0d8ff;
-  --color-s: #729acb;
+  --color-s: #90b8eb;
   --color-z: #484c56;
   --color-y: #565c68;
 }
@@ -32,8 +32,8 @@
   display: none;
 }
 ::selection {
-  background-color: var(--color-p);
-  color: var(--color-z);
+  background-color: var(--color-z);
+  color: var(--color-s);
 }
 
 /* Estilos gerais */
@@ -86,10 +86,6 @@ main {
   overflow: hidden;
 }
 
-galery {
-  display: none;
-}
-
 #markdown,
 #preview,
 galery,
@@ -111,6 +107,11 @@ galery {
   overflow-y: scroll;
 }
 
+galery {
+  padding: 0 2rem;
+  display: none;
+}
+
 #preview * {
   margin: 1rem 0;
 }
@@ -118,7 +119,7 @@ galery {
 .mkmedia,
 .card {
   position: relative;
-  margin: 1rem 0;
+  margin: 2rem 0;
   left: 50%;
   width: 100%;
   transform: translateX(-50%);
@@ -157,7 +158,7 @@ h4 {
   text-align: start;
 }
 
-b {
+strong {
   color: var(--color-p);
 }
 
@@ -165,12 +166,45 @@ a {
   color: var(--color-s);
 }
 
-.hr {
-  color: transparent;
-  opacity: 0.2;
+table {
   width: 100%;
-  border: 0;
-  border-top: 0.2rem dotted var(--color-f);
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+thead {
+  background-color: var(--color-p);
+  color: var(--color-y);
+}
+th,
+td {
+  padding: 15px;
+  text-align: left;
+}
+tbody {
+  background-color: var(--color-y);
+  color: var(--color-f);
+}
+
+pre {
+  background-color: var(--color-y);
+  color: var(--color-f);
+  padding: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+}
+
+hr {
+  background-color: transparent;
+  border: 2px dashed var(--color-f);
+  border-radius: 5px;
+  width: 100%;
+  margin: 20px auto;
+  opacity: 0.3;
 }
 
 ::placeholder {
