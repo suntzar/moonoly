@@ -74,6 +74,39 @@ pre code.hljs {
   color: var(--color-f);
 }
 
+.pie {
+  --w: 6rem; /* Ajuste a largura conforme necessário */
+  width: var(--w);
+  height: var(--w); /* Mantém a proporção 1:1 */
+  aspect-ratio: 1;
+  display: inline-grid;
+  place-content: center;
+  margin: 1rem;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+  position: relative; /* Adiciona posição relativa */
+}
+
+.pie:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 0;
+  background: conic-gradient(var(--color-p) calc(var(--p) * 1%), var(--color-y) 0);
+  transform: scaleX(-1); /* Inverte horizontalmente */
+}
+
+.pie:after {
+  content: "";
+  position: absolute;
+  transform: scale(115%);
+  border-radius: 50%;
+  inset: 0;
+  background: transparent;
+  border: 0.2rem solid var(--color-p);
+}
+
 code {
   background: var(--color-y);
   color: var(--color-f);

@@ -54,9 +54,19 @@ function markdownToHtml(markdown) {
   return markdown.trim();
 }
 
+function MKFunc(markdown) {
+  // Alinha elementos no centro
+  markdown = markdown.replace(/××(.*?)××/gim, "<center>$1</center>");
+
+  // Pie
+  markdown = markdown.replace(/%(\d+)%/gim, '<div id="pie" class="pie" style="--p:$1;"><p style="color: var(--color-p); z-index:1; -webkit-text-stroke-color: var(--color-y); -webkit-text-stroke-width: 1.5px;">$1%</p></div>');
+
+  return markdown.trim();
+}
+
 editor.addEventListener("input", () => {
   const markdownText = editor.value;
-  preview.innerHTML = marked.parse(markdownText);
+  preview.innerHTML = marked.parse(MKFunc(markdownText));
 });
 
 function edit() {
@@ -94,9 +104,9 @@ function galery() {
 
 function updatePreview() {
   const markdownText = editor.value;
-  preview.innerHTML = marked.parse(markdownText);
-  document.getElementById("card").innerHTML = marked.parse(markdownText);
-  console.log(marked.parse(markdownText));
+  preview.innerHTML = marked.parse(MKFunc(markdownText));
+  document.getElementById("card").innerHTML = marked.parse(MKFunc(markdownText));
+  console.log(marked.parse(MKFunc(markdownText)));
   hljs.highlightAll();
 }
 
