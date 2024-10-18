@@ -5,55 +5,6 @@ const preview = document.getElementById("preview");
 let show_edit = true;
 let show_galery = false;
 
-function markdownToHtml(markdown) {
-  // Converte cabeçalhos
-  markdown = markdown.replace(/^#### (.*$)/gim, "<h4>$1</h3>");
-  markdown = markdown.replace(/^### (.*$)/gim, "<h3>$1</h3>");
-  markdown = markdown.replace(/^## (.*$)/gim, "<h2>$1</h2>");
-  markdown = markdown.replace(/^# (.*$)/gim, "<h1>$1</h1>");
-
-  // Converte negrito e itálico
-  markdown = markdown.replace(/\*\*(.*)\*\*/gim, "<b>$1</b>");
-  markdown = markdown.replace(/\*(.*)\*/gim, "<i>$1</i>");
-
-  // Converte texto tachado
-  markdown = markdown.replace(/~~(.*?)~~/gim, "<del>$1</del>");
-
-  // Converte imagens
-  markdown = markdown.replace(/!\[(.*?)\]\((.*?)\)/gim, '<img src="$2" alt="$1" class="mkmedia" />');
-
-  // Converte links
-  markdown = markdown.replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2">$1</a>');
-
-  // Converte listas não ordenadas
-  markdown = markdown.replace(/^\s*[-+*] (.*$)/gim, "<ul><li>$1</li></ul>");
-
-  // Converte blocos de código
-  markdown = markdown.replace(/```([^`]+)```/gim, "<pre><code>$1</code></pre>");
-
-  // Converte código inline
-  markdown = markdown.replace(/`([^`]+)`/gim, "<code>$1</code>");
-
-  // Converte citações
-  markdown = markdown.replace(/^\> (.*$)/gim, "<blockquote>$1</blockquote>");
-
-  // Converte tabelas
-  markdown = markdown.replace(/^\|(.+)\|$/gim, "<tr><td>$1</td></tr>");
-  markdown = markdown.replace(/<\/tr>\s*<tr>/gim, "");
-
-  // Converte linhas horizontais
-  markdown = markdown.replace(/^---$/gim, "<div class='hr'></div>");
-
-  // Converte quebras de linha explícitas
-  markdown = markdown.replace(/\\\\/gim, "<br />");
-
-  // Converte quebras de linha padrões
-  markdown = markdown.replace(/\n/gim, "<p/><p>");
-
-  console.log(markdown.trim());
-  return markdown.trim();
-}
-
 function MKFunc(markdown) {
   // Alinha elementos no centro
   markdown = markdown.replace(/××(.*?)××/gim, "<center>$1</center>");
