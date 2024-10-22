@@ -1,22 +1,31 @@
 @import url(https://db.onlinewebfonts.com/c/2adbeea25e4c3a9e9ba6031bbfb45343?family=Linotte-SemiBold);
 
+/* Definição de cores */
 :root {
-  --color-f: #c1ccd5;
-  --color-p: #b0d8ff;
-  --color-s: #90b8eb;
-  --color-z: #484c56;
-  --color-y: #565c68;
+  --color-f: #c1ccd5; /*cor da fonte*/
+  --color-p: #b0d8ff; /*cor principal*/
+  --color-s: #90b8eb; /*cor secundaria*/
+  --color-z: #484c56; /*cor do fundo*/
+  --color-y: #565c68; /*cor da UI*/
+              --nord0: #2E3440; /* Polar Night */
+            --nord1: #3B4252;
+            --nord2: #434C5E;
+            --nord3: #4C566A;
+            --nord4: #D8DEE9; /* Snow Storm */
+            --nord5: #E5E9F0;
+            --nord6: #ECEFF4;
+            --nord7: #8FBCBB; /* Frost */
+            --nord8: #88C0D0;
+            --nord9: #81A1C1;
+            --nord10: #5E81AC;
+            --nord11: #BF616A; /* Aurora */
+            --nord12: #D08770;
+            --nord13: #EBCB8B;
+            --nord14: #A3BE8C;
+            --nord15: #B48EAD;
 }
-/*
-:root {
-  --color-f: #4c566a;
-  --color-p: #81a1c1;
-  --color-s: #729acb;
-  --color-y: #d8dee9;
-  --color-z: #eceff4;
-}
-*/
 
+/* Reset e estilos gerais */
 * {
   padding: 0;
   margin: 0;
@@ -34,12 +43,13 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
 ::selection {
   background-color: var(--color-z);
   color: var(--color-s);
 }
 
-/* Estilos gerais */
+/* Estilos do corpo */
 body {
   display: flex;
   flex-direction: column;
@@ -50,41 +60,45 @@ body {
   overflow: hidden;
 }
 
-header,
-nav {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 4.5rem;
-  padding: 0 2rem;
-  background-color: var(--color-z);
-  border-bottom: 0.2rem solid var(--color-y);
-}
-
-header {
-  padding-top: 0.5rem;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-blockquote {
+/* Estilos de listas */
+ul > li ul {
   padding-left: 0.6rem;
-  border-left: 0.3rem solid var(--color-p);
 }
 
-nav {
-  justify-content: space-between;
-  border-bottom: none;
+/* Estilos de tabelas */
+table {
+  width: 100%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hljs {
-  background: var(--color-y);
+thead {
+  background-color: var(--color-p);
+  color: var(--color-y);
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+}
+
+tbody {
+  background-color: var(--color-y);
   color: var(--color-f);
 }
 
-.hljs-comment {
-  color: var(--color-f);
-  opacity: 0.4;
+/* Estilos de elementos diversos */
+hr {
+  background-color: transparent;
+  border: 2px dashed var(--color-f);
+  border-radius: 5px;
+  width: 100%;
+  margin: 20px auto;
+  opacity: 0.3;
 }
 
 .pie {
@@ -118,13 +132,6 @@ nav {
   inset: 0;
   background: transparent;
   border: 0.2rem solid var(--color-p);
-}
-
-code {
-  background: var(--color-y);
-  color: var(--color-f);
-  padding: 0.3rem;
-  border-radius: 0.4rem;
 }
 
 #search {
@@ -225,26 +232,50 @@ a {
   color: var(--color-s);
 }
 
-table {
+/* Estilos do cabeçalho e navegação */
+header,
+nav {
+  display: flex;
+  align-items: center;
   width: 100%;
-  margin: 20px auto;
-  border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 4.5rem;
+  padding: 0 2rem;
+  background-color: var(--color-z);
+  border-bottom: 0.2rem solid var(--color-y);
 }
-thead {
-  background-color: var(--color-p);
-  color: var(--color-y);
+
+header {
+  padding-top: 0.5rem;
+  flex-direction: row;
+  justify-content: space-between;
 }
-th,
-td {
-  padding: 15px;
-  text-align: left;
+
+nav {
+  justify-content: space-between;
+  border-bottom: none;
 }
-tbody {
-  background-color: var(--color-y);
+
+/* Estilos de blocos e código */
+blockquote {
+  padding-left: 0.6rem;
+  border-left: 0.3rem solid var(--color-p);
+}
+
+.hljs {
+  background: var(--color-y);
   color: var(--color-f);
+}
+
+.hljs-comment {
+  color: var(--color-f);
+  opacity: 0.4;
+}
+
+code {
+  background: var(--color-y);
+  color: var(--color-f);
+  padding: 0.3rem;
+  border-radius: 0.4rem;
 }
 
 pre {
@@ -255,20 +286,13 @@ pre {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-hr {
-  background-color: transparent;
-  border: 2px dashed var(--color-f);
-  border-radius: 5px;
-  width: 100%;
-  margin: 20px auto;
-  opacity: 0.3;
-}
-
+/* Estilos de seleção */
 ::placeholder {
   color: var(--color-f);
   opacity: 0.6;
 }
 
+/* Estilos de animação */
 @keyframes shake {
   0%,
   100% {
@@ -285,7 +309,7 @@ hr {
   }
 }
 
-/* Estilos para navegação */
+/* Estilos de navegação */
 .navi {
   flex: 1;
   display: flex;
@@ -311,9 +335,11 @@ hr {
 @media (orientation: portrait) {
   editor {
     flex-direction: column-reverse;
+    height: calc(100vh - 4.5rem); /* Corrigido: Altura ocupando o espaço restante */
   }
   main {
     flex-direction: column;
+    flex: 1; /* Corrigido: Ocupa o espaço restante */
   }
   nav {
     border-top: 0.2rem solid var(--color-y);
@@ -325,6 +351,11 @@ hr {
   }
   #markdown {
     border-bottom: 0.2rem solid var(--color-y);
+  }
+  #preview,
+  #galery,
+  #markdown {
+    flex: 1; /* Corrigido: Ocupa o espaço restante */
   }
 }
 
@@ -345,8 +376,15 @@ hr {
   }
   main {
     flex-direction: row;
+    flex: 1; /* Corrigido: Ocupa o espaço restante */
+    height: calc(100vh - 4.5rem); /* Corrigido: Altura ocupando o espaço restante */
   }
   #markdown {
     border-right: 0.2rem solid var(--color-y);
+    flex: 1; /* Corrigido: Ocupa o espaço restante */
+  }
+  #preview, 
+  #galery {
+    flex: 1; /* Corrigido: Ocupa o espaço restante */
   }
 }

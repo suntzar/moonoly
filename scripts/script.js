@@ -17,7 +17,13 @@ function MKFunc(markdown) {
 editor.addEventListener("input", () => {
   const markdownText = editor.value;
   preview.innerHTML = marked.parse(MKFunc(markdownText));
-  renderMathInElement(preview); // Renderiza as expressões matemáticas
+  renderMathInElement(preview, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "\\(", right: "\\)", display: false },
+      { left: "$", right: "$", display: false }
+    ]
+  }); // Renderiza as expressões matemáticas
 });
 
 function edit() {
@@ -36,6 +42,8 @@ function edit() {
     show_galery = false;
     show_edit = false;
   }
+  console.log(document.getElementsByClassName("language-json")[0]);
+  document.getElementsByClassName("language-json")[0].style.background = "#ff141400";
 }
 
 function galery() {
@@ -56,7 +64,23 @@ function galery() {
 function updatePreview() {
   const markdownText = editor.value;
   preview.innerHTML = marked.parse(MKFunc(markdownText));
-  renderMathInElement(preview); // Renderiza as expressões matemáticas
+  renderMathInElement(
+    preview,
+    {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "$", right: "$", display: false }
+      ]
+    },
+    {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "$", right: "$", display: false }
+      ]
+    }
+  ); // Renderiza as expressões matemáticas
   document.getElementById("card").innerHTML = marked.parse(MKFunc(markdownText));
   console.log(preview.innerHTML);
   hljs.highlightAll();
