@@ -107,3 +107,7 @@ editor.addEventListener("input", () => {
 window.addEventListener("load", loadContent);
 window.addEventListener("load", hljs.highlightAll);
 window.addEventListener("load", edit);
+window.addEventListener('resize', () => {
+  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+});
+document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
