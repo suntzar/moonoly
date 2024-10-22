@@ -83,6 +83,7 @@ function updatePreview() {
   ); // Renderiza as expressões matemáticas
   document.getElementById("card").innerHTML = marked.parse(MKFunc(markdownText));
   console.log(preview.innerHTML);
+  hljs.configure({ ignoreUnescapedHTML: true }); // Desativa os avisos de vunerabilidade
   hljs.highlightAll();
 }
 
