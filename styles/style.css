@@ -54,7 +54,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: var(--color-z);
   color: var(--color-f);
   overflow: hidden;
@@ -335,7 +335,7 @@ pre {
 @media (orientation: portrait) {
   editor {
     flex-direction: column-reverse;
-    height: calc(100vh - 4.5rem); /* Corrigido: Altura ocupando o espaço restante */
+    height: calc(calc(var(--vh, 1vh) * 100) - 4.5rem); /* Corrigido: Altura ocupando o espaço restante */
   }
   main {
     flex-direction: column;
@@ -377,7 +377,7 @@ pre {
   main {
     flex-direction: row;
     flex: 1; /* Corrigido: Ocupa o espaço restante */
-    height: calc(100vh - 4.5rem); /* Corrigido: Altura ocupando o espaço restante */
+    height: calc(calc(var(--vh, 1vh) * 100) - 4.5rem); /* Corrigido: Altura ocupando o espaço restante */
   }
   #markdown {
     border-right: 0.2rem solid var(--color-y);
