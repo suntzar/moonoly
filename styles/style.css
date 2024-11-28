@@ -80,6 +80,12 @@ thead {
   color: var(--color-y);
 }
 
+img {
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 th,
 td {
   padding: 15px;
